@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_chatapp/Authenticate.dart';
-import 'package:flutter_chatapp/login_screen.dart';
+import 'package:flutter_chatapp/Authenticat/Authenticate.dart';
+import 'package:flutter_chatapp/Authenticat/login_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_chatapp/Methods.dart';
-import 'package:flutter_chatapp/home_screen.dart';
+import 'package:flutter_chatapp/Authenticat/Methods.dart';
+import 'package:flutter_chatapp/screens/home_screen.dart';
 
 class CreateAccount extends StatefulWidget {
   const CreateAccount({Key? key}) : super(key: key);

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_chatapp/CreateAccount.dart';
-import 'package:flutter_chatapp/Methods.dart';
-import 'package:flutter_chatapp/home_screen.dart';
+import 'package:flutter_chatapp/Authenticat/CreateAccount.dart';
+import 'package:flutter_chatapp/Authenticat/Methods.dart';
+import 'package:flutter_chatapp/screens/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
