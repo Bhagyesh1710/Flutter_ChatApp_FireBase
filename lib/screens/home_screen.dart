@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chatapp/Authenticat/Methods.dart';
+import 'package:flutter_chatapp/group_chat/group_chat_screen.dart';
 import 'package:flutter_chatapp/screens/ChartRoom.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -11,8 +12,7 @@ class HomeScreen extends StatefulWidget {
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver{
-
+class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   Map<String, dynamic>? userMap;
   bool isLoading = false;
   final TextEditingController _search = TextEditingController();
@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver{
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     WidgetsBinding.instance!.addObserver(this);
     setStatus("Online");
@@ -33,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver{
   }
 
   @override
-  void didChangeAppLifecycleState(AppLifecycleState state){
+  void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
       // online
       setStatus("Online");
@@ -42,7 +42,6 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver{
       setStatus("Offline");
     }
   }
-
 
   String chatRoomId(String user1, String user2) {
     if (user1[0].toLowerCase().codeUnits[0] >
@@ -75,7 +74,8 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver{
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Home Screen"),
@@ -131,11 +131,10 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver{
                               _auth.currentUser!.displayName!,
                               userMap!['name']);
 
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                                builder: (_) => ChattingRoom(
-                                    chatRoomId: roomId, userMap: userMap!)));
-                              },
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (_) => ChattingRoom(
+                                  chatRoomId: roomId, userMap: userMap!)));
+                        },
                         leading: Icon(Icons.account_box, color: Colors.black),
                         title: Text(
                           userMap!['name'],
@@ -151,12 +150,14 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver{
                     : Container(),
               ],
             ),
-      // body: Center(
-      //   child: TextButton(
-      //     onPressed: () => logOut(context),
-      //     child: Text("LogOut"),
-      //   ),
-      // ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.group),
+        onPressed: () => Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => GroupChatHomeScreen(),
+          ),
+        ),
+      ),
     );
   }
 }
