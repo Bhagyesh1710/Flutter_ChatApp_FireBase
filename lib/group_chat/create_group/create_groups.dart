@@ -43,6 +43,10 @@ class _CreateGroupState extends State<CreateGroup> {
         "id": groupId,
       });
     }
+    await _firestore.collection('groups').doc(groupId).collection('chats').add({
+      "message": "${_auth.currentUser!.displayName} Created This Group.",
+      "type": "notify",
+    });
     Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(builder: (_) => HomeScreen()), (route) => false);
   }
